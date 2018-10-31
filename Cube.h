@@ -25,6 +25,6 @@ public:
 private:
 	virtual std::ostream& toStream(std::ostream& o) const;
 
-	float m_dimensions[3];
+	float m_dimensions[3]; //ln, lg, ht
 };
 #endif // !defined(EA_8099F38C_C8A3_47d0_948F_F38A0B83FFB2__INCLUDED_)

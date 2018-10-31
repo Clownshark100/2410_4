@@ -20,20 +20,19 @@ Sphere::~Sphere(){
 
 Sphere * Sphere::clone() const
 {
-	// A Completer...
-	return nullptr;
+	return new Sphere(m_center, m_radius);
 }
 
 size_t Sphere::getNbParameters() const {
-
-	// A Completer...
-	return 0;
+	return 1; //radius
 }
 
 PrimitiveParams Sphere::getParameters() const {
 
-	// A Completer...
-	return PrimitiveParams();
+	PrimitiveParams params;
+	params.push_back(m_radius);
+	return params;
+
 }
 
 void Sphere::setParameter(size_t pIndex, float pValue){
@@ -43,7 +42,15 @@ void Sphere::setParameter(size_t pIndex, float pValue){
 	if (pValue < 0.0)
 		throw std::range_error("Invalid radius value for sphere. Must be larger than 0");
 
-	// A Completer...
+	switch (pIndex)
+	{
+
+	case 1:
+		m_radius = pValue;
+
+	default:
+		throw std::range_error("Invalid parameter index for sphere. Must be 1");
+	}
 }
 
 std::ostream & Sphere::toStream(std::ostream & o) const
