@@ -13,6 +13,8 @@ Sphere::Sphere(const Point3D& pt, float r)
 {
 	if (r < 0.0)
 		throw std::range_error("Invalid radius value for sphere. Must be larger than 0");
+	m_center = pt;
+	m_radius = r;
 }
 
 Sphere::~Sphere(){

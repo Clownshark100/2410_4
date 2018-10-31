@@ -8,10 +8,13 @@
 #include "Torus.h"
 
 
-Torus::Torus(const Point3D& pt, float r1, float r2) : PrimitiveAbs(pt)	// A Completer...
+Torus::Torus(const Point3D& pt, float r1, float r2) : PrimitiveAbs(pt)
 {
 	if (r1 < 0.0)
 		throw std::range_error("Invalid radius value for sphere. Must be larger than 0");
+	m_center = pt;
+	m_radiuses[0] = r1;
+	m_radiuses[1] = r2;
 }
 
 Torus::~Torus() {
