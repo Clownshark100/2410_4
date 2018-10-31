@@ -12,8 +12,9 @@ Cylinder::Cylinder(const Point3D& pt, float r, float ht)
 {
 	if (r < 0.0 || ht < 0.0)
 		throw std::range_error("Invalid parameter value for cylinder. Must be larger than 0");
-
-	// A Completer...
+	m_center = pt;
+	m_dimensions[0] = r; // radius
+	m_dimensions[1] = ht; // height
 }
 
 Cylinder::~Cylinder(){
@@ -21,20 +22,20 @@ Cylinder::~Cylinder(){
 
 Cylinder * Cylinder::clone() const
 {
-	// A Completer...
-	return nullptr;
+	return new Cylinder(m_center,m_dimensions[0],m_dimensions[1]);
 }
 
 size_t Cylinder::getNbParameters() const {
 
-	// A Completer...
-	return 0;
+	return 2;
 }
 
 PrimitiveParams Cylinder::getParameters() const
 {
-	// A Completer...
-	return PrimitiveParams();
+	PrimitiveParams parameters;
+	parameters.push_back(m_dimensions[0]);
+	parameters.push_back(m_dimensions[1]);
+	return parameters;
 }
 
 void Cylinder::setParameter(size_t pIndex, float pValue){
@@ -43,8 +44,18 @@ void Cylinder::setParameter(size_t pIndex, float pValue){
 
 	if (pValue < 0.0)
 		throw std::range_error("Invalid parameter value for cylinder. Must be larger than 0");
-
-	// A Completer...
+	switch (pIndex)
+	{
+	case 0:
+		m_dimensions[0] = pValue;
+		break;
+	case 1:
+		m_dimensions[1] = pValue;
+		break;
+	default:
+		throw std::range_error("Invalid parameter value for cylinder. Must be smaller than 2");
+		break;
+	}
 }
 
 std::ostream & Cylinder::toStream(std::ostream & o) const
