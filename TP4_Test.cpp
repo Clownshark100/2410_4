@@ -154,6 +154,7 @@ TP4_Test::RESULTAT TP4_Test::testDecorator()
 	std::cout << "===== testDecorator TEST 5 SUCCES" << std::endl;
 
 	m_cylTransformed.setTranslation(Point3D(1., 1., 1.));
+	centreTransform = m_cylTransformed.getCenter(); 
 	Point3D resultatTransform2(3.5f, 2.5f, 1.);
 	if (centreTransform != resultatTransform2)
 	{
