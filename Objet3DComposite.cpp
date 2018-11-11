@@ -77,11 +77,14 @@ void Objet3DComposite::removeChild(Objet3DIterator_const obj3dIt)
 
 void Objet3DComposite::moveCenter(const Point3D & delta)
 {
-	computeCenter() += delta;
+	for (auto it = begin(); it < end(); it++) {
+		it->setCenter(it->getCenter + delta);
+	}
 }
 
 void Objet3DComposite::setCenter(const Point3D& center){
-	computeCenter() = center;
+	Point3D delta = center-computeCenter();
+	moveCenter(delta);
 }
 
 void Objet3DComposite::setParameter(size_t pIndex, float pValue){
