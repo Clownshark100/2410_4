@@ -44,17 +44,11 @@ void Cylinder::setParameter(size_t pIndex, float pValue){
 
 	if (pValue < 0.0)
 		throw std::range_error("Invalid parameter value for cylinder. Must be larger than 0");
-	switch (pIndex)
-	{
-	case 0:
-		m_dimensions[0] = pValue;
-		break;
-	case 1:
-		m_dimensions[1] = pValue;
-		break;
-	default:
-		throw std::range_error("Invalid parameter value for cylinder. Must be smaller than 2");
-		break;
+	
+	if (pIndex == 0 || pIndex == 1){
+		m_dimensions[pIndex] = pValue;
+	}else{
+		throw std::range_error("Invalid parameter value for cylinder. Must be smaller than 2 and non-negative");
 	}
 }
 
